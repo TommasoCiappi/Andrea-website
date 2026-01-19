@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andrea – Altre informazioni</title>
+  <style>
+    :root {
+      --text-main: #f5f5f7;
+      --text-soft: #a1a1aa;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #111827, #020617 60%);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .scene {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(40px) scale(0.98);
+      transition: opacity 0.8s ease, transform 0.9s ease;
+      pointer-events: none;
+    }
+
+    .scene.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .content {
+      text-align: center;
+      max-width: 780px;
+      padding: 0 1.5rem;
+    }
+
+    .label {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 0.9rem;
+    }
+
+    h2 {
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      margin: 0 0 1rem 0;
+      color: #fff;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.9s ease;
+    }
+
+    .active h2 {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    p {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--text-soft);
+      margin: 0 auto;
+      max-width: 640px;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.8s ease 0.25s, transform 0.9s ease 0.25s;
+    }
+
+    .show-text p {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .staffer-extra {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.8s ease, opacity 0.8s ease;
+      margin-top: 2rem;
+    }
+
+    .staffer-extra.visible {
+      max-height: 400px;
+      opacity: 1;
+    }
+
+    .staffer-extra h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .contact-line {
+      font-size: 1.2rem;
+      color: #d1d5db;
+      margin: 0.4rem 0;
+    }
+
+    .qr-box-inline {
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      justify-content: center;
+    }
+
+    .qr-text {
+      font-size: 0.95rem;
+      color: #f5f5f7;
+      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .qr-text .arrow {
+      font-size: 1.2rem;
+      color: #0af;
+      animation: pulseArrow 1.2s infinite ease-in-out;
+    }
+
+    @keyframes pulseArrow {
+      0% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      50% {
+        transform: translateX(4px);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .qr-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .progress {
+      position: fixed;
+      bottom: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      opacity: 0.9;
+    }
+
+    .dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.4);
+      transition: 0.25s ease;
+    }
+
+    .dot.active {
+      background: #e5e7eb;
+      transform: translateY(-1px);
+      width: 18px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SCENA 1 -->
+  <div class="scene active" id="scene1">
+    <div class="content">
+      <div class="label">01 · Studente</div>
+      <h2>Studente</h2>
+      <p>
+        Nillobob10 é un ragazzo di nome Andrea che frequenta l’Istituto Peano di Firenze dove segue l’indirizzo di Tecnico Informatico.
+		Mostra una grande curiosità e un’attenzione particolare per il mondo della tecnologia, che lo affascina soprattutto
+		per la sua capacità di trasformare intuizioni e progetti in qualcosa di concreto.
+      </p>
+    </div>
+  </div>
+
+  <!-- SCENA 2 -->
+  <div class="scene" id="scene2">
+    <div class="content">
+      <div class="label">02 · Designer</div>
+      <h2>Designer</h2>
+      <p>
+        Andrea ha una vera passione per la programmazione, tanto che passa gran parte del suo tempo immerso tra editor di codice e ambienti di sviluppo. 
+		Quando ha un’idea, apre subito i suoi programmi preferiti e si mette a sperimentare, provare, correggere, migliorare. 
+		Gli piace capire come funzionano le cose “dietro le quinte” e trasformare poche righe di codice in qualcosa che prende vita sullo schermo. 
+		Questa curiosità lo accompagna ogni giorno, rendendolo sempre più bravo e sicuro di sé nel mondo dell’informatica.
+      </p>
+    </div>
+  </div>
+
+  <!-- SCENA 3 -->
+  <div class="scene" id="scene3">
+    <div class="content">
+      <div class="label">03 · Staffer</div>
+      <h2>Staffer</h2>
+      <p>
+        Andrea fa parte dello staff del server Discord “The Scotts” e ne ricopre il ruolo di co-owner, 
+		contribuendo alla gestione della community e al coordinamento delle attività.  
+		È una presenza affidabile: mantiene l’ambiente organizzato, supporta gli utenti e affianca il team ogni volta che c’è bisogno, 
+		garantendo sempre ordine e collaborazione all’interno del server.
+      </p>
+
+      <div class="staffer-extra" id="stafferExtra">
+        <h3>Contatti</h3>
+       
+        <p class="contact-line">📧 Email: <strong>andrea.fec10@gmail.com</strong></p>
+
+        <div class="qr-box-inline">
+          <div class="qr-text">
+            <span class="arrow">→</span>
+            Vieni a far parte anche tu nel server <strong>The Scotts</strong>
+          </div>
+          <img src="The_Scotts-1024.png" class="qr-image" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="progress">
+    <div class="dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <div class="hint">Scorri per continuare</div>
+  </div>
+
+  <script>
+    const scenes = [
+      document.getElementById("scene1"),
+      document.getElementById("scene2"),
+      document.getElementById("scene3")
+    ];
+
+    const dots = document.querySelectorAll(".dot");
+    const stafferExtra = document.getElementById("stafferExtra");
+
+    let step = 0;
+    let isAnimating = false;
+    let stafferState = 0;
+
+    function updateScene(index) {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      scenes.forEach((s, i) => {
+        s.classList.remove("active", "show-text");
+        dots[i].classList.toggle("active", i === index);
+      });
+
+      const scene = scenes[index];
+      scene.classList.add("active");
+
+      setTimeout(() => {
+        scene.classList.add("show-text");
+        isAnimating = false;
+      }, 350);
+    }
+
+    updateScene(0);
+
+    function handleStafferScroll(delta) {
+      if (delta > 0) {
+        if (stafferState === 0) {
+          stafferState = 1;
+          stafferExtra.classList.add("visible");
+          return;
+        }
+        if (stafferState === 1) {
+          return;
+        }
+      } else {
+        if (stafferState === 1) {
+          stafferState = 0;
+          stafferExtra.classList.remove("visible");
+          return;
+        }
+        if (stafferState === 0) {
+          step--;
+          updateScene(step);
+          return;
+        }
+      }
+    }
+
+    window.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      if (isAnimating) return;
+
+      if (step === 2) {
+        handleStafferScroll(e.deltaY);
+        return;
+      }
+
+      if (e.deltaY > 0 && step < scenes.length - 1) {
+        step++;
+        updateScene(step);
+      } else if (e.deltaY < 0 && step > 0) {
+        step--;
+        updateScene(step);
+      }
+    }, { passive: false });
+    let touchStartY = 0;
+
+window.addEventListener("touchstart", (e) => {
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+window.addEventListener("touchend", (e) => {
+  const touchEndY = e.changedTouches[0].clientY;
+  const deltaY = touchStartY - touchEndY;
+
+  if (Math.abs(deltaY) < 40) return; // evita tocchi piccoli
+
+  if (step === 2) {
+    handleStafferScroll(deltaY);
+    return;
+  }
+
+  if (deltaY > 0 && step < scenes.length - 1) {
+    step++;
+    updateScene(step);
+  } else if (deltaY < 0 && step > 0) {
+    step--;
+    updateScene(step);
+  }
+});
+
+  </script>
+
+</body>
+</html>
